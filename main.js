@@ -59,10 +59,23 @@ $(document).ready(() => {
             const endereco = `${logradouro}, ${bairro} - ${cidade} - ${estado}`
            
             $('#endereco').val(endereco)
-            
+        })
+        .catch((error) => {
+            alert("Ocorreu um erro ao buscar o endereço, tente mais tarde.")
+        })
+        .finally(() => {
             setTimeout(() => {
                 botão.find('i').removeClass('d-none');
                 botão.find('span').addClass('d-none');
-            }, 1000);})
+            }, 1000);
+        })
+    })
+
+    $('#formulario-pedido').submit((evento) => {
+        evento.preventDefault();
+
+        if ($('#nome').val().length === 0){
+           throw new Error('Digite o nome')
+        }
     })
 })
